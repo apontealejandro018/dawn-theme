@@ -1,0 +1,16 @@
+{{ 'popup-subscription.css' | asset_url | stylesheet_tag }}
+
+<div id="popup-container" class="popup-container">
+  <div class="popup-content">
+    <span id="popup-close" class="popup-close">&times;</span>
+    <h2>¡Suscríbete a nuestro boletín!</h2>
+    <p>Recibe las últimas novedades y ofertas exclusivas directamente en tu correo.</p>
+    <form id="mc-embedded-subscribe-form" class="validate" action="#" method="post">
+      <input type="email" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Tu correo electrónico" required>
+      <button type="submit" name="subscribe" id="mc-embedded-subscribe">Suscribirse</button>
+    </form>
+    <div id="subscribe-result"></div>
+  </div>
+</div>
+
+<script src="{{ 'popup-subscription.js' | asset_url }}"></script>

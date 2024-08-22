@@ -1,0 +1,51 @@
+<h1>PRUEBA</h1>
+<div class="collection-container">
+  <h2>Featured Collection</h2>
+  <div class="row collections" style="display: flex;">
+    {% for collection in collections %}
+      <div class="card-container">
+
+        {% if collection.image %}
+          {% assign collection_image = collection.image %}
+        {% elsif collection.products.first and collection.products.first.images != empty %}
+          {% assign collection_image = collection.products.first.featured_image %}
+        {% else %}
+        {% assign collection_image = collection.products.first.featured_media.preview_image %}
+        {% endif %}
+        <div class="card">
+        <a href="{{ collection.url }}">
+          <img src="{{ collection_image | img_url: '480x' }}" alt="{{collection.title}}">
+          {{ collection.title }}
+        </a>
+        </div>
+
+      </div>
+    {% endfor %}
+  </div>
+</div>
+<h1>Productos</h1>
+
+<div class="row">
+    {% for product in collections.Hydrogen.products %}
+      {%  assign image = product.featured_media.preview_image %}
+      <div class="card">
+
+        {% if image != blank %}
+          <img src="{{ image | image_url  }}" alt="{{product.title}}">
+          {% else %}
+            {{ 'product-1' |  placeholder_svg_tag: 'card-img-top' }}
+        {% endif %}
+        <div class="card-body">
+          <h3><a class="title" href="{{product.url}}">{{product.title}}</a></h3>
+          <p>Price: {{product.price |  money_without_trailing_zeros}}</p>
+        </div>
+
+      </div>
+
+    {% endfor %}
+  </div>
+
+<h1>metafields</h1>
+  {% if product.metafields.custom.masvistas %}
+  <p>{{ product.metafields.custom.masvistas }}</p>
+{% endif %}

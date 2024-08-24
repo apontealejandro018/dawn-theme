@@ -1,0 +1,17 @@
+{{ 'popular-products.css' | asset_url | stylesheet_tag }}
+
+<div class="popular-products-section">
+  <h2 class="rich-text__heading rte inline-richtext h1 scroll-trigger animate--slide-in">Productos más Vendidos</h2>
+  <div class="product-grid scroll-trigger animate--slide-in scroll-trigger--offscreen">
+    {% assign popular_products = collections['popular-products'].products %}
+    {% for product in popular_products limit: 3 %}
+      <div class="product-item">
+        <a href="{{ product.url }}">
+          <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}">
+          <h3>{{ product.title }}</h3>
+          <span class="price">{{ product.price | money }}</span>
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+</div>

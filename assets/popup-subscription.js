@@ -15,6 +15,8 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('popup-container').addEventListener('click', function (event) {
         if (event.target == document.getElementById('popup-container')) {
             document.getElementById('popup-container').style.display = 'none';
+            // Marcar que el pop-up ha sido mostrado
+            localStorage.setItem('popupShown', 'true');
         }
     });
 });

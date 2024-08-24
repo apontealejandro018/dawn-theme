@@ -1,0 +1,38 @@
+{{ 'special-offer.css' | asset_url | stylesheet_tag }}
+
+<link href="https://pbutcher.uk/flipdown/css/flipdown/flipdown.css" rel="stylesheet">
+
+{% assign product = all_products['gift-card'] %}
+<div class="limited-offer-section">
+  <div
+    class="product-offer scroll-trigger animate--slide-in scroll-trigger--offscreen"
+    data-end-date="{{ product.metafields.custom.oferta_especial | date: '%Y-%m-%dT00:00:00' }}"
+  >
+    <div class="main-product-info ">
+      <div class="product-info">
+        <a href="{{ product.url }}">
+          <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}">
+        </a>
+      </div>
+      <div class="product-discount">
+        <h3 class="product-percentage">50%</h3>
+        <h3 class="product-off ">OFF</h3>
+      </div>
+    </div>
+    <div id="countdown" class="countdown-timer scroll-trigger animate--slide-in scroll-trigger--offscreen">
+      <div class="count-down">
+        <div class="count-down-title">
+          <h2>
+            ¡Oferta especial en
+            <span>{{ product.title }}</span>
+            por tiempo limitado!
+          </h2>
+        </div>
+        <div class="flipdown" id="flipdown"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://pbutcher.uk/flipdown/js/flipdown/flipdown.js"></script>
+<script src="{{ 'special-offer.js' | asset_url }}"></script>
